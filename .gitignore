@@ -1,0 +1,23 @@
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.log
+
+out
+target/
+gradle/
+.gradle
+build
+
+*.class
+classes
+
+# Gradle files
+gradlew
+gradlew.bat
