@@ -3,7 +3,7 @@ package team.mediasoft.study.reactive.flights.repository;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import team.mediasoft.study.reactive.flights.dto.Flight;
+import team.mediasoft.study.reactive.flights.entity.Flight;
 
 import java.util.Set;
 
