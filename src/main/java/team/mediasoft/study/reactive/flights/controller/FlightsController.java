@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import team.mediasoft.study.reactive.flights.dto.Flight;
+import team.mediasoft.study.reactive.flights.dto.FlightDto;
 import team.mediasoft.study.reactive.flights.service.FlightService;
 
 @RestController
@@ -19,14 +19,14 @@ public class FlightsController {
     private final FlightService flightService;
 
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<Flight>> getById(@PathVariable Integer id) {
+    public Mono<ResponseEntity<FlightDto>> getById(@PathVariable Integer id) {
         return flightService.findById(id)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/all")
-    public Flux<Flight> getAll() {
+    public Flux<FlightDto> getAll() {
         return flightService.getAllFlights();
     }
 }

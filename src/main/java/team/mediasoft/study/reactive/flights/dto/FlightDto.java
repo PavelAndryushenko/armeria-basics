@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 @EqualsAndHashCode
-public class Flight {
+public class FlightDto {
 
     private final Integer id;
     private final String aircraft;

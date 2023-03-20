@@ -4,7 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import team.mediasoft.study.reactive.flights.dto.Flight;
+import team.mediasoft.study.reactive.flights.dto.FlightDto;
+import team.mediasoft.study.reactive.flights.mapper.FlightMapper;
 import team.mediasoft.study.reactive.flights.repository.FlightRepository;
 
 @Service
@@ -12,12 +13,13 @@ import team.mediasoft.study.reactive.flights.repository.FlightRepository;
 public class FlightService {
 
     private final FlightRepository flightRepository;
+    private final FlightMapper flightMapper;
 
-    public Mono<Flight> findById(Integer id) {
-        return flightRepository.findById(id);
+    public Mono<FlightDto> findById(Integer id) {
+        return flightRepository.findById(id).map(flightMapper::toDto);
     }
 
-    public Flux<Flight> getAllFlights() {
-        return flightRepository.findAll();
+    public Flux<FlightDto> getAllFlights() {
+        return flightRepository.findAll().map(flightMapper::toDto);
     }
 }

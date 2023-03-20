@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20230319-001" author="Pavel A Andryushenko">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="flights" />
+            </not>
+        </preConditions>
+        <createTable tableName="flights" remarks="Таблица перелетов">
+            <column name="id" type="BIGINT" remarks="Уникальный идентификатор перелета">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_flight" />
+            </column>
+            <column name="aircraft" type="VARCHAR" remarks="Тип ВС" />
+            <column name="departure_airport" type="VARCHAR" remarks="Аэропорт вылета" />
+            <column name="arrival_airport" type="VARCHAR" remarks="Аэропорт назначения" />
+        </createTable>
+        <addAutoIncrement tableName="flights" columnName="id" />
+    </changeSet>
+
+    <changeSet id="20230319-002" author="Pavel A Andryushenko">
+        <insert tableName="flights">
+            <column name="aircraft" value="Tu-154"/>
+            <column name="departure_airport" value="VVO"/>
+            <column name="arrival_airport" value="PKC"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="aircraft" value="Tu-204"/>
+            <column name="departure_airport" value="FNJ"/>
+            <column name="arrival_airport" value="VVO"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="aircraft" value="Yak-42"/>
+            <column name="departure_airport" value="KZN"/>
+            <column name="arrival_airport" value="AER"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
