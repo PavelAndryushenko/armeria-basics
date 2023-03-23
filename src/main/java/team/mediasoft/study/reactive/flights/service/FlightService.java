@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import team.mediasoft.study.reactive.flights.dto.FlightDto;
+import team.mediasoft.study.reactive.flights.entity.Flight;
 import team.mediasoft.study.reactive.flights.mapper.FlightMapper;
 import team.mediasoft.study.reactive.flights.repository.FlightRepository;
 
@@ -21,5 +22,9 @@ public class FlightService {
 
     public Flux<FlightDto> getAllFlights() {
         return flightRepository.findAll().map(flightMapper::toDto);
+    }
+
+    public Flux<Flight> getByAircraft(String aircraft) {
+        return flightRepository.findByAircraft(aircraft);
     }
 }
